@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Requests\User\UpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class UserController extends ApiResponseController
 
     public function store(Request $request)
     {
-        //
+
     }
 
     public function show($id)
@@ -23,8 +24,14 @@ class UserController extends ApiResponseController
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
+
+        $user = User::find($id);
+
+        $user->update($request->all());
+
+        return $this->responseSuccess($request->all(), 'update successfully.');
 
     }
 
