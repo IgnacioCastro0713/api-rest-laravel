@@ -29,13 +29,17 @@ class UserController extends ApiResponseController
 
         $user = User::find($id);
 
-        $user->update($request->all());
+        $user->update($request->except('id', 'role', 'password', 'created_at', 'remember_token'));
 
         return $this->responseSuccess($request->all(), 'update successfully.');
-
     }
 
     public function destroy($id)
+    {
+        //
+    }
+
+    public  function upload()
     {
         //
     }

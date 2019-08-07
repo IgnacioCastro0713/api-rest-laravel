@@ -28,11 +28,24 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware('jwt')->group(function () {
+
+    /*Routes controller*/
+
     Route::apiResources([
         'user' => 'API\UserController',
         'category' => 'API\CategoryController',
         'post' => 'API\CategoryController'
     ]);
+
+    /*single routes*/
+
+    //UserController
+    Route::post('user/upload', 'API\UserController@upload')->name('user.upload');
+
+    //CategoryController
+
+    //PostController
+
 });
 
 
