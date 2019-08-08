@@ -5,6 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\User\UpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends ApiResponseController
 {
@@ -21,7 +25,8 @@ class UserController extends ApiResponseController
 
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return $user ? $this->responseSuccess($user, 'retrieved successfully.') : $this->responseError('not found', 'user no exist');
     }
 
     public function update(UpdateRequest $request, $id)
@@ -39,8 +44,35 @@ class UserController extends ApiResponseController
         //
     }
 
-    public  function upload()
+    public  function upload(Request $request)
     {
-        //
+        $image = $request->file('file0');
+
+        $validator = Validator::make($request->all(), [
+            'file0' => 'required|image|mimes:jpg,jpeg,png,gif'
+        ]);
+
+
+        if ($image && !$validator->fails()) {
+
+            $image_name = time().$image->getClientOriginalName();
+
+            Storage::disk('users')->put($image_name, File::get($image));
+
+            return $this->responseSuccess($image_name, 'save successfully');
+        }
+
+        return $this->responseError('bad request', $validator->errors(), 400);
+    }
+
+    public function getImage($filename)
+    {
+        if (!Storage::disk('users')->exists($filename)) {
+            return $this->responseError('not found',  ['file' => 'file not found']);
+        }
+
+        $file = Storage::disk('users')->get($filename);
+
+        return new Response($file, 200);
     }
 }

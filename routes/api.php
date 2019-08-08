@@ -41,7 +41,7 @@ Route::middleware('jwt')->group(function () {
 
     //UserController
     Route::post('user/upload', 'API\UserController@upload')->name('user.upload');
-
+    Route::get('user/image/{filename}', 'API\UserController@getImage')->name('user.avatar');
     //CategoryController
 
     //PostController
