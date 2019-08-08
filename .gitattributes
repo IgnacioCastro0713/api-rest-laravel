@@ -4,6 +4,4 @@
 *.scss linguist-vendored
 *.js linguist-vendored
 *.html linguist-vendored
-*.sql linguist-vendored
-*.vue linguist-vendored
 CHANGELOG.md export-ignore
