@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\API\ApiResponseController;
+use App\Http\Controllers\API\ApiController;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends ApiResponseController
+class RegisterController extends ApiController
 {
     /*
     |--------------------------------------------------------------------------

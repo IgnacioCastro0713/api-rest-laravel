@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\API\ApiResponseController;
-use App\User;
+use App\Http\Controllers\API\ApiController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 
-class LoginController extends ApiResponseController
+class LoginController extends ApiController
 {
     /*
     |--------------------------------------------------------------------------

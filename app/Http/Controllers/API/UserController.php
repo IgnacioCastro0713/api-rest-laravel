@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class UserController extends ApiResponseController
+class UserController extends ApiController
 {
 
     public function index()
@@ -26,13 +26,15 @@ class UserController extends ApiResponseController
     public function show($id)
     {
         $user = User::find($id);
-        return $user ? $this->responseSuccess($user, 'retrieved successfully.') : $this->responseError('not found', 'user no exist');
+        return $user ? $this->responseSuccess($user, 'retrieved successfully.') : $this->responseError('not found', 'this user does not exist');
     }
 
     public function update(UpdateRequest $request, $id)
     {
 
         $user = User::find($id);
+
+        if (!$user) return $this->responseError('not found', 'this user does not exist');
 
         $user->update($request->except('id', 'role', 'password', 'created_at', 'remember_token'));
 
