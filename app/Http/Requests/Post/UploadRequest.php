@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Post;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UploadRequest extends FormRequest
 {
@@ -24,7 +26,17 @@ class UploadRequest extends FormRequest
     public function rules()
     {
         return [
-            'image.*' => 'required|image|mimes:jpg,jpeg,png,gif'
+            'file0' => 'required|image|mimes:jpg,jpeg,png,gif'
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => false,
+            'code' => 400,
+            'message' => 'bad request',
+            'errors' => $validator->errors()
+        ], 400));
     }
 }

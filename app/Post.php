@@ -23,4 +23,17 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    //static methods
+
+    public static function getPostByCategory($id)
+    {
+        return self::where('category_id', $id)->get();
+    }
+
+    public static function getPostByUser($id)
+    {
+        return self::where('user_id', $id)->get();
+    }
+
 }

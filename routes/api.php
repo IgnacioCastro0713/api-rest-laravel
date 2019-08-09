@@ -46,6 +46,9 @@ Route::middleware('jwt')->group(function () {
 
     //PostController
     Route::post('post/upload', 'API\PostController@upload')->name('post.upload');
+    Route::get('post/image/{filename}', 'API\PostController@getImage')->name('post.image');
+    Route::get('post/category/{id}', 'API\PostController@getPostByCategory')->name('post.category');
+    Route::get('post/user/{id}', 'API\PostController@getPostByUser')->name('post.user');
 
 });
 

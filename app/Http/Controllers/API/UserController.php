@@ -46,7 +46,7 @@ class UserController extends ApiController
         //
     }
 
-    public  function upload(Request $request)
+    public function upload(Request $request)
     {
         $image = $request->file('file0');
 
