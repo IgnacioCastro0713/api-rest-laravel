@@ -34,7 +34,7 @@ Route::middleware('jwt')->group(function () {
     Route::apiResources([
         'user' => 'API\UserController',
         'category' => 'API\CategoryController',
-        'post' => 'API\CategoryController'
+        'post' => 'API\PostController'
     ]);
 
     /*single routes*/
@@ -45,6 +45,7 @@ Route::middleware('jwt')->group(function () {
     //CategoryController
 
     //PostController
+    Route::post('post/upload', 'API\PostController@upload')->name('post.upload');
 
 });
 
