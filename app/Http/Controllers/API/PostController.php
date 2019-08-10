@@ -72,19 +72,31 @@ class PostController extends ApiController
 
     public function getImage($filename)
     {
-        if (!Storage::disk('users')->exists($filename)) return $this->responseError('not found',  'image not exist');
+        if (!Storage::disk('users')->exists($filename))
+            return $this->responseError('not found',  'image not exist');
 
         $file = Storage::disk('users')->get($filename);
+
         return new Response($file, 200);
     }
 
     public function getPostByCategory($id)
     {
-        return $this->responseSuccess(Post::getPostByCategory($id), 'retrieved successfully.');
+        $postByCategory = Post::getPostByCategory($id);
+
+        if (!$postByCategory)
+            return $this->responseError('not found',  'this post does not exist');
+
+        return $this->responseSuccess($postByCategory, 'retrieved successfully.');
     }
 
     public function getPostByUser($id)
     {
-        return $this->responseSuccess(Post::getPostByUser($id), 'retrieved successfully.');
+        $postByUser = Post::getPostByUser($id);
+
+        if (!$postByUser)
+            return $this->responseError('not found',  'this post does not exist');
+
+        return $this->responseSuccess($postByUser, 'retrieved successfully.');
     }
 }
