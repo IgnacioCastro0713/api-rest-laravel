@@ -79,14 +79,14 @@ class RegisterController extends ApiController
 
         $user = $this->create($request->all());
 
-        $credentials = ["email" => $request->email, 'password' => $request->password];
+        /*$credentials = ["email" => $request->email, 'password' => $request->password];
 
 
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        $user['access_token'] = $token;
+        $user['access_token'] = $token;*/
 
         return $this->responseSuccess($user, 'user registration correct');
     }
