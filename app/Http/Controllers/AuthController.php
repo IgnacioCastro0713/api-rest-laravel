@@ -12,7 +12,7 @@ class AuthController extends ApiController
 {
     public function __construct()
     {
-        $this->middleware('jwt')->except('login');
+        $this->middleware('jwt')->except('login', 'register');
     }
     /**
      * Get a JWT via given credentials.
@@ -56,7 +56,10 @@ class AuthController extends ApiController
     public function logout()
     {
         auth()->logout();
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json([
+            'ok'=> true,
+            'message' => 'Successfully logged out'
+        ]);
     }
     /**
      * Refresh a token.

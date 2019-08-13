@@ -48,19 +48,19 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
             return response()->json([
-                'auth' => false,
+                'status' => 401,
                 'error' => 'token is expired',
                 'message' => 'unauthenticated user'
             ], 401);
         } elseif ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
             return response()->json([
-                'auth' => false,
+                'status' => 401,
                 'error' => 'token is invalid',
                 'message' => 'unauthenticated user'
             ], 401);
         } elseif ($exception instanceof \Tymon\JWTAuth\Exceptions\JWTException) {
             return response()->json([
-                'auth' => false,
+                'status' => 401,
                 'error' => 'token absent',
                 'message' => 'unauthenticated user'
                 ], 401);
