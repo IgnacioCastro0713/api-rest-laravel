@@ -24,7 +24,7 @@ Route::prefix('auth')->group(function () {
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-    Route::post('register', 'Auth\RegisterController@register')->name('register.api');
+    Route::post('register', 'AuthController@register')->name('register.api');
 });
 
 Route::middleware('jwt')->group(function () {

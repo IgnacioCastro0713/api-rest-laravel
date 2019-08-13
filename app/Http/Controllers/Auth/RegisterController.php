@@ -62,14 +62,16 @@ class RegisterController extends ApiController
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    /*protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
+    }*/
+
+    /*
 
     public function register(Request $request)
     {
@@ -86,8 +88,8 @@ class RegisterController extends ApiController
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        $user['access_token'] = $token;*/
+        $user['access_token'] = $token;
 
         return $this->responseSuccess($user, 'user registration correct');
-    }
+    }*/
 }
