@@ -51,4 +51,8 @@ Route::middleware('jwt')->group(function () {
 
 });
 
-
+Route::get('/', function () {
+    return response()->json([
+        'title' => 'Blog - Api Rest Ful and JWT Token (Back-End)'
+    ]);
+});

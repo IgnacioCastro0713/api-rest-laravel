@@ -15,5 +15,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return response()->json([
+        'title' => 'Blog - Api Rest Ful and JWT Token (Back-End)'
+    ]);
+});
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
