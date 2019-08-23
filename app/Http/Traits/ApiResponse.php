@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+namespace App\Http\Traits;
 
-class ApiController extends Controller
+
+trait ApiResponse
 {
-
     public function responseSuccess($result, $message, $status = 200)
     {
         return response()->json([
@@ -19,11 +18,11 @@ class ApiController extends Controller
 
     public function responseError($message, $errors = [], $status = 404)
     {
-            return response()->json([
-                'ok' => false,
-                'status' => $status,
-                'message' => $message,
-                'errors' => $errors
-            ], $status);
+        return response()->json([
+            'ok' => false,
+            'status' => $status,
+            'message' => $message,
+            'errors' => $errors
+        ], $status);
     }
 }
