@@ -58,6 +58,12 @@ class UserController extends Controller
 
         if ($image && !$validator->fails()) {
 
+            $exits = Storage::disk('users')->exists(auth()->user()->image);
+
+            if ($exits) {
+                Storage::disk('users')->delete(auth()->user()->image);
+            }
+
             $image_name = time().$image->getClientOriginalName();
 
             Storage::disk('users')->put($image_name, File::get($image));

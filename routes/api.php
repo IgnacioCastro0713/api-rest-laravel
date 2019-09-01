@@ -19,6 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/', function () {
+    return response()->json([
+        'title' => 'Blog - Api Rest Ful and JWT Token (Back-End)'
+    ]);
+});
+
 Route::prefix('auth')->group(function () {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
@@ -41,7 +47,6 @@ Route::middleware('jwt')->group(function () {
 
     //UserController
     Route::post('user/upload', 'API\UserController@upload')->name('user.upload');
-    Route::get('user/image/{filename}', 'API\UserController@getImage')->name('user.avatar');
 
     //PostController
     Route::post('post/upload', 'API\PostController@upload')->name('post.upload');
@@ -51,8 +56,8 @@ Route::middleware('jwt')->group(function () {
 
 });
 
-Route::get('/', function () {
-    return response()->json([
-        'title' => 'Blog - Api Rest Ful and JWT Token (Back-End)'
-    ]);
-});
+Route::get('user/image/{filename}', 'API\UserController@getImage')->name('user.avatar');
+
+
+
+
